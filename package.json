@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/ragnar-codes/nodeJS-Express-Demo#readme",
   "dependencies": {
-    "express": "^4.17.3"
+    "express": "^4.17.3",
+    "joi": "^13.1.0"
   }
 }
