@@ -1,0 +1,23 @@
+{
+  "name": "nodejs-express-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ragnar-codes/nodeJS-Express-Demo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ragnar-codes/nodeJS-Express-Demo/issues"
+  },
+  "homepage": "https://github.com/ragnar-codes/nodeJS-Express-Demo#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
