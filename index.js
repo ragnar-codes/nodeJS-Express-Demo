@@ -26,13 +26,10 @@ app.get('/api/courses/:id', (req, res) => {
 });
 
 app.post('/api/courses', (req, res) => {
-    const schema = {
-        name: joi.string().min(3).required()
-    }
-    const result = joi.validate(req.body, schema);
-    if(result.error){
+    const {error} = validateCourse(req.body);
+    if(error){
         // bad request 400
-        res.status(400).send(result.error.details[0].message);
+        res.status(400).send(error.details[0].message);
         return; // we don't want the rest of the function to be executed
     }
     const course = {
@@ -43,6 +40,33 @@ app.post('/api/courses', (req, res) => {
     res.send(`The ${course.name} course added to the database`);
 })
 
+app.put('/api/courses/:id', (req, res) => {
+    //look up the course
+    //if not existing, return 404
+    const course = courses.find(c => c.id === parseInt(req.params.id));
+    if(!course) res.status(404).send('The course with the given id not found')
+    const {error} = validateCourse(req.body); // result.error
+    
+    if(error){
+        // bad request 400
+        res.status(400).send(error.details[0].message);
+        return; // we don't want the rest of the function to be executed
+    };
+    //update course
+    course.name = req.body.name; 
+    //return the updated course
+    res.send(course);
+    
+});
 
+const validateCourse = (course) => {
+    if(!course) res.status(404).send('course not found');
+    //validate
+    //if invalid, return 400 - Bad request
+    const schema = {
+        name: joi.string().min(3).required()
+    }; 
+    return joi.validate(course, schema);
+}
 
 app.listen(port, () => console.log(`server running on the port ${port}`));
